@@ -1,0 +1,21 @@
+# 백준 1541 - 잃어버린 괄호
+answer = 0
+A = list(map(str, input().split("-")))
+
+def mySum(i): # -로 나눈 각 수식 문자열 합을 구하는 함수
+    result = 0
+    temp = str(i).split("+") # + 기준으로 수식을 자름
+    for k in temp:
+        result += int(k) # '78' 같은 문자열이므로 int()
+
+    return result
+
+for s in range(len(A)):
+    temp = mySum(A[s])
+
+    if s == 0:
+        answer += temp # 맨 처음 값
+    else:
+        answer -= temp 
+
+print(answer)

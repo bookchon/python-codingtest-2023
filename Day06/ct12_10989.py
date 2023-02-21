@@ -1,47 +1,14 @@
-# 백준 2751 - 수 정렬하기2
-
+# 백준 10989 - 수 정렬하기3
 import sys
 input = sys.stdin.readline
 
-A = []
-tmp = []
-
-def merge_sort(s, e): # 병합정렬
-    if e - s < 1: return
-    m = s + (e - s) // 2
-    merge_sort(s, m)
-    merge_sort(m + 1, e)
-
-    for i in range(s, e + 1):
-        tmp[i] = A[i]
-    k = s
-    index1 = s
-    index2 = m + 1
-    while index1 <= m and index2 <= e:
-        if tmp[index1] > tmp[index2]:
-            A[k] = tmp[index2]
-            k += 1
-            index2 += 1
-        else:
-            A[k] = tmp[index1]
-            k += 1
-            index1 += 1
-    while index1 <= m:
-        A[k] = tmp[index1]
-        k+= 1
-        index1 += 1
-    while index2 <= e:
-        A[k] = tmp[index2]
-        k += 1
-        index2 += 1
-
 N = int(input())
-A = [0] * int(N + 1)
-tmp = [0] * int(N + 1)
-for i in range(1, N+1):
-    A[i] = int(input())
+count = [0] * 10001
 
-merge_sort(1, N)
+for i in range(N):
+    count[int(input())] += 1
 
-for i in range(1, N+1):
-    print(A[i])
+for i in range(10001):
+    if count[i] != 0:
+        for _ in range(count[i]):
+            print(i)
